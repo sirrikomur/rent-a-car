@@ -1,4 +1,4 @@
-package bootcamps.turkcell.rentacar.business.dtos.requests.brand.create;
+package bootcamps.turkcell.rentacar.business.dtos.responses.brand.update;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -9,7 +9,7 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class UpdateBrandRequest {
+public class UpdateBrandResponse {
     private int id;
     private String name;
 }

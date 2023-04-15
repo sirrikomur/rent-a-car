@@ -1,9 +1,9 @@
 package bootcamps.turkcell.rentacar.api.controllers;
 
 import bootcamps.turkcell.rentacar.business.dtos.requests.brand.create.CreateBrandRequest;
-import bootcamps.turkcell.rentacar.business.dtos.requests.brand.create.UpdateBrandRequest;
+import bootcamps.turkcell.rentacar.business.dtos.requests.brand.update.UpdateBrandRequest;
 import bootcamps.turkcell.rentacar.business.dtos.responses.brand.create.CreateBrandResponse;
-import bootcamps.turkcell.rentacar.business.dtos.responses.brand.create.UpdateBrandResponse;
+import bootcamps.turkcell.rentacar.business.dtos.responses.brand.update.UpdateBrandResponse;
 import bootcamps.turkcell.rentacar.business.dtos.responses.brand.get.GetAllBrandsResponse;
 import bootcamps.turkcell.rentacar.business.dtos.responses.brand.get.GetBrandResponse;
 import bootcamps.turkcell.rentacar.business.services.BrandService;
@@ -36,9 +36,9 @@ public class BrandsController {
         return brandService.create(brandRequest);
     }
 
-    @PutMapping
-    public UpdateBrandResponse update(@RequestBody UpdateBrandRequest brandRequest) {
-        return brandService.update(brandRequest);
+    @PutMapping("/{id}")
+    public UpdateBrandResponse update(@PathVariable int id,  @RequestBody UpdateBrandRequest brandRequest) {
+        return brandService.update(id, brandRequest);
     }
 
     @DeleteMapping("/{id}")

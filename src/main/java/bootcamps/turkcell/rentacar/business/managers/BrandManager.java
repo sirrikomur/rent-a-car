@@ -2,9 +2,9 @@ package bootcamps.turkcell.rentacar.business.managers;
 
 import bootcamps.turkcell.core.utilities.mappers.services.ModelMapperService;
 import bootcamps.turkcell.rentacar.business.dtos.requests.brand.create.CreateBrandRequest;
-import bootcamps.turkcell.rentacar.business.dtos.requests.brand.create.UpdateBrandRequest;
+import bootcamps.turkcell.rentacar.business.dtos.requests.brand.update.UpdateBrandRequest;
 import bootcamps.turkcell.rentacar.business.dtos.responses.brand.create.CreateBrandResponse;
-import bootcamps.turkcell.rentacar.business.dtos.responses.brand.create.UpdateBrandResponse;
+import bootcamps.turkcell.rentacar.business.dtos.responses.brand.update.UpdateBrandResponse;
 import bootcamps.turkcell.rentacar.business.dtos.responses.brand.get.GetAllBrandsResponse;
 import bootcamps.turkcell.rentacar.business.dtos.responses.brand.get.GetBrandResponse;
 import bootcamps.turkcell.rentacar.business.services.BrandService;
@@ -42,8 +42,9 @@ public class BrandManager implements BrandService {
     }
 
     @Override
-    public UpdateBrandResponse update(UpdateBrandRequest brandRequest) {
+    public UpdateBrandResponse update(int id, UpdateBrandRequest brandRequest) {
         Brand brand = this.modelMapperService.forRequest().map(brandRequest, Brand.class);
+        brand.setId(id);
         this.brandRepository.save(brand);
         return this.modelMapperService.forResponse().map(brand, UpdateBrandResponse.class);
     }

@@ -1,5 +1,4 @@
-package bootcamps.turkcell.rentacar.business.dtos.requests.model.create;
-
+package bootcamps.turkcell.rentacar.business.dtos.responses.model.get;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -10,7 +9,8 @@ import lombok.Setter;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class CreateModelRequest {
+public class GetAllModelsResponse {
+    private int id;
     private int brandId;
     private String name;
 }
