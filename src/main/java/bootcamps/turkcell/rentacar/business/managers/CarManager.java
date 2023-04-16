@@ -7,10 +7,11 @@ import bootcamps.turkcell.rentacar.business.dtos.responses.car.create.CreateCarR
 import bootcamps.turkcell.rentacar.business.dtos.responses.car.get.GetAllCarsResponse;
 import bootcamps.turkcell.rentacar.business.dtos.responses.car.get.GetCarResponse;
 import bootcamps.turkcell.rentacar.business.dtos.responses.car.update.UpdateCarResponse;
+import bootcamps.turkcell.rentacar.business.rules.CarBusinessRules;
 import bootcamps.turkcell.rentacar.business.services.CarService;
 import bootcamps.turkcell.rentacar.domain.entities.Car;
 import bootcamps.turkcell.rentacar.domain.enums.CarState;
-import bootcamps.turkcell.rentacar.repositories.CarRepository;
+import bootcamps.turkcell.rentacar.repository.CarRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -20,6 +21,7 @@ import java.util.List;
 @AllArgsConstructor
 public class CarManager implements CarService {
     private final CarRepository repository;
+    private final CarBusinessRules rules;
     private final ModelMapperService mapper;
 
     @Override
@@ -36,7 +38,9 @@ public class CarManager implements CarService {
 
     @Override
     public CreateCarResponse create(CreateCarRequest carRequest) {
+        rules.checkIfLicencePlateExists(carRequest.getLicensePlate());
         Car car = mapper.forRequest().map(carRequest, Car.class);
+        car.setId(0);
         car.setState(CarState.AVAILABLE);
         repository.save(car);
         return mapper.forResponse().map(car, CreateCarResponse.class);
@@ -46,6 +50,7 @@ public class CarManager implements CarService {
     public UpdateCarResponse update(int id, UpdateCarRequest carRequest) {
         // !!! LOOK AGAIN !!!
         // Car car = repository.findById(id).orElseThrow();
+        rules.checkIfLicencePlateExists(carRequest.getLicensePlate());
         Car car = mapper.forRequest().map(carRequest, Car.class);
         car.setId(id);
         repository.save(car);

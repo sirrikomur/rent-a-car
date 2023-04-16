@@ -7,9 +7,10 @@ import bootcamps.turkcell.rentacar.business.dtos.responses.model.create.CreateMo
 import bootcamps.turkcell.rentacar.business.dtos.responses.model.get.GetAllModelsResponse;
 import bootcamps.turkcell.rentacar.business.dtos.responses.model.get.GetModelResponse;
 import bootcamps.turkcell.rentacar.business.dtos.responses.model.update.UpdateModelResponse;
+import bootcamps.turkcell.rentacar.business.rules.ModelBusinessRules;
 import bootcamps.turkcell.rentacar.business.services.ModelService;
 import bootcamps.turkcell.rentacar.domain.entities.Model;
-import bootcamps.turkcell.rentacar.repositories.ModelRepository;
+import bootcamps.turkcell.rentacar.repository.ModelRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ModelManager implements ModelService {
     private final ModelRepository repository;
+    private final ModelBusinessRules rules;
     private final ModelMapperService mapper;
 
     @Override
@@ -35,7 +37,9 @@ public class ModelManager implements ModelService {
 
     @Override
     public CreateModelResponse create(CreateModelRequest modelRequest) {
+        rules.checkIfModelNameExists(modelRequest.getName());
         Model model = mapper.forRequest().map(modelRequest, Model.class);
+        model.setId(0);
         repository.save(model);
         return mapper.forResponse().map(model, CreateModelResponse.class);
     }

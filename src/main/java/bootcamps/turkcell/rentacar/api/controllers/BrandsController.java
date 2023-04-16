@@ -7,6 +7,7 @@ import bootcamps.turkcell.rentacar.business.dtos.responses.brand.update.UpdateBr
 import bootcamps.turkcell.rentacar.business.dtos.responses.brand.get.GetAllBrandsResponse;
 import bootcamps.turkcell.rentacar.business.dtos.responses.brand.get.GetBrandResponse;
 import bootcamps.turkcell.rentacar.business.services.BrandService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -32,12 +33,12 @@ public class BrandsController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public CreateBrandResponse create(CreateBrandRequest brandRequest) {
+    public CreateBrandResponse create(@Valid @RequestBody CreateBrandRequest brandRequest) {
         return brandService.create(brandRequest);
     }
 
     @PutMapping("/{id}")
-    public UpdateBrandResponse update(@PathVariable int id,  @RequestBody UpdateBrandRequest brandRequest) {
+    public UpdateBrandResponse update(@PathVariable int id,  @Valid @RequestBody UpdateBrandRequest brandRequest) {
         return brandService.update(id, brandRequest);
     }
 

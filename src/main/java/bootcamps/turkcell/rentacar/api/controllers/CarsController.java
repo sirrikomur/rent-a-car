@@ -7,6 +7,7 @@ import bootcamps.turkcell.rentacar.business.dtos.responses.car.get.GetAllCarsRes
 import bootcamps.turkcell.rentacar.business.dtos.responses.car.get.GetCarResponse;
 import bootcamps.turkcell.rentacar.business.dtos.responses.car.update.UpdateCarResponse;
 import bootcamps.turkcell.rentacar.business.services.CarService;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -29,12 +30,12 @@ public class CarsController {
     }
 
     @PostMapping
-    public CreateCarResponse create(@RequestBody CreateCarRequest carRequest) {
+    public CreateCarResponse create(@Valid @RequestBody CreateCarRequest carRequest) {
         return carService.create(carRequest);
     }
 
     @PutMapping("/{id}")
-    public UpdateCarResponse update(@PathVariable int id, @RequestBody UpdateCarRequest carRequest) {
+    public UpdateCarResponse update(@PathVariable int id, @Valid @RequestBody UpdateCarRequest carRequest) {
         return carService.update(id, carRequest);
     }
 

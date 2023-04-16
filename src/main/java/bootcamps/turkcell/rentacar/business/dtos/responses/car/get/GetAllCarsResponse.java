@@ -13,6 +13,9 @@ import lombok.Setter;
 public class GetAllCarsResponse {
     private int id;
     private int modelId;
+
+    private String modelName;
+
     private short modelYear;
     private String licensePlate;
     private CarState carState;
