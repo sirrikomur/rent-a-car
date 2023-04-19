@@ -1,4 +1,4 @@
-package bootcamps.turkcell.rentacar.common.configurations.mappers;
+package bootcamps.turkcell.rentacar.common.configurations;
 
 import bootcamps.turkcell.core.utilities.mappers.managers.ModelMapperManager;
 import bootcamps.turkcell.core.utilities.mappers.services.ModelMapperService;

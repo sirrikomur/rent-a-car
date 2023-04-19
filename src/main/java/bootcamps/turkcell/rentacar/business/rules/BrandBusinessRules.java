@@ -1,7 +1,7 @@
 package bootcamps.turkcell.rentacar.business.rules;
 
 import bootcamps.turkcell.core.utilities.exceptions.business.BusinessException;
-import bootcamps.turkcell.rentacar.common.constants.Messages;
+import bootcamps.turkcell.rentacar.common.constants.ExceptionMessages;
 import bootcamps.turkcell.rentacar.repository.BrandRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ public class BrandBusinessRules {
 
     public void checkIfBrandNameExists(String name) {
         if (brandRepository.existsByNameIgnoreCase(name)) {
-            throw new BusinessException(Messages.Brand.NAME_ALREADY_EXISTS);
+            throw new BusinessException(ExceptionMessages.Brand.NAME_ALREADY_EXISTS);
         }
     }
 }

@@ -14,16 +14,16 @@ public class UpdateCarRequest {
     @NotNull
     private int modelId;
 
-    @NotEmpty
+    @NotNull
     @Min(1885)
     @Max(2023)
     private short modelYear;
 
-    @NotEmpty
+    @NotBlank
     @Size(min = 7, max = 8)
     private String licensePlate;
 
-    @NotEmpty
+    @NotNull
     @PositiveOrZero
     private double dailyRental;
 }

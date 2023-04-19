@@ -1,7 +1,7 @@
 package bootcamps.turkcell.rentacar.business.rules;
 
 import bootcamps.turkcell.core.utilities.exceptions.business.BusinessException;
-import bootcamps.turkcell.rentacar.common.constants.Messages;
+import bootcamps.turkcell.rentacar.common.constants.ExceptionMessages;
 import bootcamps.turkcell.rentacar.repository.CarRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -13,7 +13,7 @@ public class CarBusinessRules {
 
     public void checkIfLicencePlateExists(String licencePlate) {
         if (repository.existsByLicensePlateIgnoreCase(licencePlate)){
-            throw new BusinessException(Messages.Car.LICENCE_PLATE_ALREADY_EXISTS);
+            throw new BusinessException(ExceptionMessages.Car.LICENCE_PLATE_ALREADY_EXISTS);
         }
     }
 }

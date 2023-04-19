@@ -1,15 +1,16 @@
 package bootcamps.turkcell.core.utilities.exceptions.validation;
 
-import bootcamps.turkcell.core.utilities.exceptions.ProblemDetail;
-import lombok.*;
+import bootcamps.turkcell.core.utilities.exceptions.base.ProblemDetail;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
-import java.util.Map;
-
-@Data
-@EqualsAndHashCode(callSuper = true)
+@Getter
+@Setter
 @NoArgsConstructor
-@AllArgsConstructor
 public class ValidationProblemDetail extends ProblemDetail {
-    private Map<String, String> validationErrors;
+    public ValidationProblemDetail(String type, Object message, int code) {
+        super(type, message, code);
+    }
 }
 

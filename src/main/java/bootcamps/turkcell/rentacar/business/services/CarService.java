@@ -6,6 +6,7 @@ import bootcamps.turkcell.rentacar.business.dtos.responses.car.create.CreateCarR
 import bootcamps.turkcell.rentacar.business.dtos.responses.car.get.GetAllCarsResponse;
 import bootcamps.turkcell.rentacar.business.dtos.responses.car.get.GetCarResponse;
 import bootcamps.turkcell.rentacar.business.dtos.responses.car.update.UpdateCarResponse;
+import bootcamps.turkcell.rentacar.domain.enums.CarState;
 
 import java.util.List;
 
@@ -15,4 +16,6 @@ public interface CarService {
     CreateCarResponse create(CreateCarRequest carRequest);
     UpdateCarResponse update(int id, UpdateCarRequest carRequest);
     void delete(int id);
+
+    void changeState(int id, CarState state);
 }

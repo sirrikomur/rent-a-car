@@ -18,34 +18,34 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api/brands")
 public class BrandsController {
-    private final BrandService brandService;
+    private final BrandService service;
 
     @GetMapping
     public List<GetAllBrandsResponse> getAll() {
-        return brandService.getAll();
+        return service.getAll();
     }
 
     @GetMapping("/{id}")
     public GetBrandResponse getById(@PathVariable int id) {
-        return brandService.getById(id);
+        return service.getById(id);
     }
 
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public CreateBrandResponse create(@Valid @RequestBody CreateBrandRequest brandRequest) {
-        return brandService.create(brandRequest);
+        return service.create(brandRequest);
     }
 
     @PutMapping("/{id}")
     public UpdateBrandResponse update(@PathVariable int id,  @Valid @RequestBody UpdateBrandRequest brandRequest) {
-        return brandService.update(id, brandRequest);
+        return service.update(id, brandRequest);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable int id) {
-        brandService.delete(id);
+        service.delete(id);
     }
 
 }

@@ -48,8 +48,6 @@ public class CarManager implements CarService {
 
     @Override
     public UpdateCarResponse update(int id, UpdateCarRequest carRequest) {
-        // !!! LOOK AGAIN !!!
-        // Car car = repository.findById(id).orElseThrow();
         rules.checkIfLicencePlateExists(carRequest.getLicensePlate());
         Car car = mapper.forRequest().map(carRequest, Car.class);
         car.setId(id);
@@ -60,5 +58,12 @@ public class CarManager implements CarService {
     @Override
     public void delete(int id) {
         repository.deleteById(id);
+    }
+
+    @Override
+    public void changeState(int id, CarState state) {
+        Car car = repository.findById(id).orElseThrow();
+        car.setState(state);
+        repository.save(car);
     }
 }

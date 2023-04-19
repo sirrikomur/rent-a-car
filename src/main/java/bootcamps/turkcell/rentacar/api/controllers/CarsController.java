@@ -17,30 +17,30 @@ import java.util.List;
 @AllArgsConstructor
 @RequestMapping("/api/cars")
 public class CarsController {
-    private final CarService carService;
+    private final CarService service;
 
     @GetMapping
     public List<GetAllCarsResponse> getAll() {
-        return carService.getAll();
+        return service.getAll();
     }
 
     @GetMapping("/{id}")
     public GetCarResponse getById(@PathVariable int id) {
-        return carService.getById(id);
+        return service.getById(id);
     }
 
     @PostMapping
     public CreateCarResponse create(@Valid @RequestBody CreateCarRequest carRequest) {
-        return carService.create(carRequest);
+        return service.create(carRequest);
     }
 
     @PutMapping("/{id}")
     public UpdateCarResponse update(@PathVariable int id, @Valid @RequestBody UpdateCarRequest carRequest) {
-        return carService.update(id, carRequest);
+        return service.update(id, carRequest);
     }
 
     @DeleteMapping("/{id}")
     public void delete(@PathVariable int id) {
-        carService.delete(id);
+        service.delete(id);
     }
 }
