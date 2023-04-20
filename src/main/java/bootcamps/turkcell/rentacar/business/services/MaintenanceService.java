@@ -12,7 +12,7 @@ import java.util.List;
 public interface MaintenanceService {
     List<GetAllMaintenancesResponse> getAll();
     GetMaintenanceResponse getById(int id);
-    GetMaintenanceResponse returnCarFromMaintenance(int carId);
+    GetMaintenanceResponse finishMaintenance(int carId);
     CreateMaintenanceResponse create(CreateMaintenanceRequest maintenanceRequest);
     UpdateMaintenanceResponse update(int id, UpdateMaintenanceRequest maintenanceRequest);
     void delete(int id);

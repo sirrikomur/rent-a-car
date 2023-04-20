@@ -19,7 +19,7 @@ public class Maintenance {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String information;
-    private boolean isCompleted;
+    //private boolean isCompleted;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 

@@ -38,7 +38,7 @@ public class BrandManager implements BrandService {
 
     @Override
     public CreateBrandResponse create(CreateBrandRequest brandRequest) {
-        rules.checkIfBrandNameExists(brandRequest.getName());
+        rules.brandNameCannotBeRepeated(brandRequest.getName());
         Brand brand = mapper.forRequest().map(brandRequest, Brand.class);
         brand.setId(0);
         repository.save(brand);

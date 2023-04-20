@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class CarBusinessRules {
     private final CarRepository repository;
 
-    public void checkIfLicencePlateExists(String licencePlate) {
+    public void licencePlateCannotBeRepeated(String licencePlate) {
         if (repository.existsByLicensePlateIgnoreCase(licencePlate)){
             throw new BusinessException(ExceptionMessages.Car.LICENCE_PLATE_ALREADY_EXISTS);
         }

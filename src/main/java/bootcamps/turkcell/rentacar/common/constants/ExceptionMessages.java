@@ -21,8 +21,15 @@ public class ExceptionMessages {
         public static final String NOT_EXISTS = "MAINTENANCE_NOT_EXISTS";
         public static final String CAR_UNDER_MAINTENANCE = "CAR_UNDER_MAINTENANCE";
         public static final String CAR_NOT_UNDER_MAINTENANCE = "CAR_NOT_UNDER_MAINTENANCE";
+        public static final String CAR_CANNOT_PUT_UNDER_MAINTENANCE = "CAR_CANNOT_PUT_UNDER_MAINTENANCE";
+    }
+
+    public static class Rental {
+        public static final String NOT_EXISTS = "RENTAL_NOT_EXISTS";
+
         public static final String CAR_RENTED = "CAR_RENTED";
     }
+
 
 
 }

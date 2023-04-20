@@ -25,9 +25,7 @@ public class MaintenanceManager implements MaintenanceService {
     private final MaintenanceRepository repository;
     private final MaintenanceBusinessRules rules;
     private final ModelMapperService mapper;
-
     private final CarService carService;
-
 
     @Override
     public List<GetAllMaintenancesResponse> getAll() {
@@ -42,10 +40,9 @@ public class MaintenanceManager implements MaintenanceService {
     }
 
     @Override
-    public GetMaintenanceResponse returnCarFromMaintenance(int carId) {
-        rules.checkIfCarUnderMaintenance(carId);
-        Maintenance maintenance = repository.findByCarIdAndIsCompletedFalse(carId);
-        maintenance.setCompleted(true);
+    public GetMaintenanceResponse finishMaintenance(int carId) {
+        rules.carCannotBeFinishedWhenNotUnderMaintenance(carId);
+        Maintenance maintenance = repository.findByCarIdAndEndDateNull(carId);
         maintenance.setEndDate(LocalDateTime.now());
         repository.save(maintenance);
         carService.changeState(carId, CarState.AVAILABLE);
@@ -54,10 +51,10 @@ public class MaintenanceManager implements MaintenanceService {
 
     @Override
     public CreateMaintenanceResponse create(CreateMaintenanceRequest maintenanceRequest) {
-        rules.checkIfCarNotUnderMaintenance(maintenanceRequest.getCarId());
+        rules.carCannotBePutUnderMaintenanceWhenUnderMaintenance(maintenanceRequest.getCarId());
+        rules.carCannotBePutUnderMaintenanceWhenNotAvailable(maintenanceRequest.getCarId());
         Maintenance maintenance = mapper.forRequest().map(maintenanceRequest, Maintenance.class);
         maintenance.setId(0);
-        maintenance.setCompleted(false);
         maintenance.setStartDate(LocalDateTime.now());
         repository.save(maintenance);
         carService.changeState(maintenanceRequest.getCarId(), CarState.MAINTENANCE);

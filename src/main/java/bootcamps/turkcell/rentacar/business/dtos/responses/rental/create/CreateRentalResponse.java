@@ -1,4 +1,4 @@
-package bootcamps.turkcell.rentacar.business.dtos.responses.maintenance.get;
+package bootcamps.turkcell.rentacar.business.dtos.responses.rental.create;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -11,11 +11,9 @@ import java.time.LocalDateTime;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-public class GetMaintenanceResponse {
+public class CreateRentalResponse {
     private int id;
     private int carId;
-    private String information;
-    //private boolean isCompleted;
     private LocalDateTime startDate;
     private LocalDateTime endDate;
 }

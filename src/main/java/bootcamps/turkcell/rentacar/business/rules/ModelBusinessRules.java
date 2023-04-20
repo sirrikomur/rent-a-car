@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 public class ModelBusinessRules {
     private final ModelRepository repository;
 
-    public void checkIfModelNameExists(String name) {
+    public void modelNameCannotBeRepeated(String name) {
         if (repository.existsByNameIgnoreCase(name)) {
             throw new BusinessException(ExceptionMessages.Model.NAME_ALREADY_EXISTS);
         }

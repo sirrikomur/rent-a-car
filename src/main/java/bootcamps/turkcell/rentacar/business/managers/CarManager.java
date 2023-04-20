@@ -38,7 +38,7 @@ public class CarManager implements CarService {
 
     @Override
     public CreateCarResponse create(CreateCarRequest carRequest) {
-        rules.checkIfLicencePlateExists(carRequest.getLicensePlate());
+        rules.licencePlateCannotBeRepeated(carRequest.getLicensePlate());
         Car car = mapper.forRequest().map(carRequest, Car.class);
         car.setId(0);
         car.setState(CarState.AVAILABLE);
@@ -48,7 +48,7 @@ public class CarManager implements CarService {
 
     @Override
     public UpdateCarResponse update(int id, UpdateCarRequest carRequest) {
-        rules.checkIfLicencePlateExists(carRequest.getLicensePlate());
+        rules.licencePlateCannotBeRepeated(carRequest.getLicensePlate());
         Car car = mapper.forRequest().map(carRequest, Car.class);
         car.setId(id);
         repository.save(car);

@@ -37,7 +37,7 @@ public class ModelManager implements ModelService {
 
     @Override
     public CreateModelResponse create(CreateModelRequest modelRequest) {
-        rules.checkIfModelNameExists(modelRequest.getName());
+        rules.modelNameCannotBeRepeated(modelRequest.getName());
         Model model = mapper.forRequest().map(modelRequest, Model.class);
         model.setId(0);
         repository.save(model);

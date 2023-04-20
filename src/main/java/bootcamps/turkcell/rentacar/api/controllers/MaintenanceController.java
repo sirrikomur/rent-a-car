@@ -40,10 +40,10 @@ public class MaintenanceController {
         return service.update(id, maintenanceRequest);
     }
 
-    @PutMapping("/return")
+    @PutMapping("/finish")
     @ResponseStatus(HttpStatus.OK)
-    GetMaintenanceResponse returnCarFromMaintenance(@RequestParam int carId) {
-        return service.returnCarFromMaintenance(carId);
+    GetMaintenanceResponse finishMaintenance(@RequestParam int carId) {
+        return service.finishMaintenance(carId);
     }
 
     @DeleteMapping("{id}")
