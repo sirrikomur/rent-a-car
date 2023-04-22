@@ -31,4 +31,7 @@ public class Car {
 
     @OneToMany(mappedBy = "car")
     private List<Maintenance> maintenance;
+
+    @OneToMany(mappedBy = "car")
+    private List<Invoice> invoices;
 }
