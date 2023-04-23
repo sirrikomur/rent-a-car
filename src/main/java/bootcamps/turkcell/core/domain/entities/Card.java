@@ -13,6 +13,6 @@ public class Card {
     private String number;
     private String holder;
     private int expirationYear;
-    private int expirationDay;
+    private int expirationMonth;
     private String cvv;
 }

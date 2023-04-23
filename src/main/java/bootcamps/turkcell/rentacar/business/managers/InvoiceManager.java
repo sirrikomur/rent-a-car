@@ -7,18 +7,14 @@ import bootcamps.turkcell.rentacar.business.dtos.responses.invoice.create.Create
 import bootcamps.turkcell.rentacar.business.dtos.responses.invoice.get.GetAllInvoicesResponse;
 import bootcamps.turkcell.rentacar.business.dtos.responses.invoice.get.GetInvoiceResponse;
 import bootcamps.turkcell.rentacar.business.dtos.responses.invoice.update.UpdateInvoiceResponse;
-import bootcamps.turkcell.rentacar.business.services.CarService;
 import bootcamps.turkcell.rentacar.business.services.InvoiceService;
 import bootcamps.turkcell.rentacar.common.constants.Values;
-import bootcamps.turkcell.rentacar.common.operations.Mathematics;
 import bootcamps.turkcell.rentacar.domain.entities.Invoice;
 import bootcamps.turkcell.rentacar.repository.InvoiceRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 import java.util.Random;
 
@@ -27,7 +23,6 @@ import java.util.Random;
 public class InvoiceManager implements InvoiceService {
     private final InvoiceRepository repository;
     private final ModelMapperService mapper;
-    private final CarService carService;
 
     @Override
     public List<GetAllInvoicesResponse> getAll() {
@@ -48,10 +43,7 @@ public class InvoiceManager implements InvoiceService {
         invoice.setNo(generateInvoiceNo());
         invoice.setCreatedDate(LocalDateTime.now());
         invoice.setTaxRate(Values.TaxRate.VAT);
-        invoice.setRentalStartDate(convertDate(invoiceRequest.getRentalStartDate()));
-        invoice.setRentalEndDate(convertDate(invoiceRequest.getRentalEndDate()));
-        double dailyRental = carService.getById(invoiceRequest.getCarId()).getDailyRental();
-        invoice.setRentalPrice(calculateRentalPrice(calculateNumberOfDaysRented(invoice.getRentalStartDate(), invoice.getRentalEndDate()), dailyRental, invoice.getTaxRate()));
+
         repository.save(invoice);
 
         return mapper.forResponse().map(invoice, CreateInvoiceResponse.class);
@@ -73,18 +65,5 @@ public class InvoiceManager implements InvoiceService {
     private String generateInvoiceNo() {
         Random random = new Random();
         return "INV-" + random.nextInt(1000000000);
-    }
-
-    private LocalDate convertDate(String input) {
-        DateTimeFormatter dateTimePattern = DateTimeFormatter.ofPattern("d/M/yyyy");
-        return LocalDate.parse(input, dateTimePattern);
-    }
-
-    private int calculateNumberOfDaysRented(LocalDate startDate, LocalDate endDate) {
-        return endDate.getDayOfYear() - startDate.getDayOfYear();
-    }
-
-    private double calculateRentalPrice(int numberOfDaysRented, double dailyPrice, double taxRate) {
-        return (dailyPrice + Mathematics.percentOf(dailyPrice, taxRate)) * numberOfDaysRented;
     }
 }

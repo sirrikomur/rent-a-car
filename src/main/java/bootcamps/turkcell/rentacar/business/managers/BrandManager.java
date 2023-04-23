@@ -47,6 +47,9 @@ public class BrandManager implements BrandService {
 
     @Override
     public UpdateBrandResponse update(int id, UpdateBrandRequest brandRequest) {
+        rules.idCannotBeProcessedWhenNotExists(id, repository);
+        rules.brandNameCannotBeRepeated(brandRequest.getName());
+
         Brand brand = mapper.forRequest().map(brandRequest, Brand.class);
         brand.setId(id);
         repository.save(brand);
@@ -55,8 +58,8 @@ public class BrandManager implements BrandService {
 
     @Override
     public void delete(int id) {
+        rules.idCannotBeProcessedWhenNotExists(id, repository);
+
         repository.deleteById(id);
     }
-
-
 }

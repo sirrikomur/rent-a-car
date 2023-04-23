@@ -13,5 +13,4 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UpdateInvoiceResponse {
     private int id;
-    private int carId;
 }

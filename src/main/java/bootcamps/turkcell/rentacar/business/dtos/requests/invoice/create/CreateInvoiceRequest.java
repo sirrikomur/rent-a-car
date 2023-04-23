@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Getter
@@ -13,15 +14,14 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CreateInvoiceRequest {
-    private int carId;
-//    private String carModelName;
-//    private String carModelBrandName;
-//    private short carModelYear;
-//    private String carLicencePlate;
-//    private double carDailyRental;
-
-    private String rentalStartDate;
-    private String rentalEndDate;
+    private String brandName;
+    private String modelName;
+    private short modelYear;
+    private String licencePlate;
+    private LocalDate rentalStartDate;
+    private LocalDate rentalEndDate;
+    private double dailyRental;
+    private double rentalPrice;
 }
 
 

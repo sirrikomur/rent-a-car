@@ -8,6 +8,7 @@ import lombok.*;
 @Setter
 @NoArgsConstructor
 public class BusinessProblemDetail extends ProblemDetail {
+
     public BusinessProblemDetail(String type, Object message, int code) {
         super(type, message, code);
     }

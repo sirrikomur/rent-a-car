@@ -8,6 +8,8 @@ import bootcamps.turkcell.rentacar.business.dtos.responses.brand.get.GetAllBrand
 import bootcamps.turkcell.rentacar.business.dtos.responses.brand.get.GetBrandResponse;
 import bootcamps.turkcell.rentacar.business.services.BrandService;
 import jakarta.validation.Valid;
+import jakarta.validation.constraints.Min;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

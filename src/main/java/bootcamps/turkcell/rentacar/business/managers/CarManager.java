@@ -48,7 +48,9 @@ public class CarManager implements CarService {
 
     @Override
     public UpdateCarResponse update(int id, UpdateCarRequest carRequest) {
+        rules.idCannotBeProcessedWhenNotExists(id, repository);
         rules.licencePlateCannotBeRepeated(carRequest.getLicensePlate());
+
         Car car = mapper.forRequest().map(carRequest, Car.class);
         car.setId(id);
         repository.save(car);
@@ -57,6 +59,8 @@ public class CarManager implements CarService {
 
     @Override
     public void delete(int id) {
+        rules.idCannotBeProcessedWhenNotExists(id, repository);
+
         repository.deleteById(id);
     }
 

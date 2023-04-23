@@ -10,10 +10,9 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class UpdateInvoiceRequest {
-    private int carId;
-    private String carModelName;
-    private String carModelBrandName;
-    private short carModelYear;
-    private String carLicencePlate;
-    private double carDailyRental;
+    private String modelName;
+    private String brandName;
+    private short modelYear;
+    private String licencePlate;
+    private double dailyRental;
 }

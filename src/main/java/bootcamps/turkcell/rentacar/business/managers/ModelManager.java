@@ -46,6 +46,8 @@ public class ModelManager implements ModelService {
 
     @Override
     public UpdateModelResponse update(int id, UpdateModelRequest modelRequest) {
+        rules.idCannotBeProcessedWhenNotExists(id, repository);
+
         Model model = mapper.forRequest().map(modelRequest, Model.class);
         model.setId(id);
         repository.save(model);
@@ -54,6 +56,8 @@ public class ModelManager implements ModelService {
 
     @Override
     public void delete(int id) {
+        rules.idCannotBeProcessedWhenNotExists(id, repository);
+
         repository.deleteById(id);
     }
 }

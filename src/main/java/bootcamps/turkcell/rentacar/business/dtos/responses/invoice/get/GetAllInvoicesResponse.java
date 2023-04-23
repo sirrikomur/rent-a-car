@@ -14,10 +14,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class GetAllInvoicesResponse {
     private int id;
-    private int carId;
     private String modelName;
-    private String brandName;
     private short modelYear;
+    private String brandName;
     private String licencePlate;
     private double dailyRental;
     private LocalDateTime createdDate;

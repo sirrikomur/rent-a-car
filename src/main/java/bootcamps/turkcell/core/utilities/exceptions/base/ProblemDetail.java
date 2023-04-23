@@ -1,5 +1,6 @@
 package bootcamps.turkcell.core.utilities.exceptions.base;
 
+import bootcamps.turkcell.rentacar.common.constants.ExceptionDetail;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

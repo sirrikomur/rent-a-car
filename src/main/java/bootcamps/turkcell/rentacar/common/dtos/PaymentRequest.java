@@ -11,8 +11,7 @@ import lombok.Setter;
 @NoArgsConstructor
 @AllArgsConstructor
 public class PaymentRequest {
-    private String invoiceNo;
-    private double totalAmount;
-
+    //private String invoiceNo;
     private Card card;
+    private double amount;
 }

@@ -12,7 +12,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class CreateInvoiceResponse {
     private int id;
-    private int carId;
 }
 
 

@@ -63,6 +63,8 @@ public class MaintenanceManager implements MaintenanceService {
 
     @Override
     public UpdateMaintenanceResponse update(int id, UpdateMaintenanceRequest maintenanceRequest) {
+        rules.idCannotBeProcessedWhenNotExists(id, repository);
+
         Maintenance maintenance = mapper.forRequest().map(maintenanceRequest, Maintenance.class);
         maintenance.setId(id);
         repository.save(maintenance);
@@ -71,6 +73,8 @@ public class MaintenanceManager implements MaintenanceService {
 
     @Override
     public void delete(int id) {
+        rules.idCannotBeProcessedWhenNotExists(id, repository);
+
         repository.deleteById(id);
     }
 }

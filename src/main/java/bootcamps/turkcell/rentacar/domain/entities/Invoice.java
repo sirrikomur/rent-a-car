@@ -20,13 +20,14 @@ public class Invoice {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String no;
+    private String brandName;
+    private String modelName;
+    private short modelYear;
+    private String licencePlate;
     private LocalDateTime createdDate;
     private LocalDate rentalStartDate;
     private LocalDate rentalEndDate;
     private double taxRate;
+    private double dailyRental;
     private double rentalPrice;
-
-    @ManyToOne
-    @JoinColumn(name = "car_id")
-    private Car car;
 }
